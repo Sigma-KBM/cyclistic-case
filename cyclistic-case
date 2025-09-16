@@ -1,1 +1,27 @@
+cyclistic-case/
+  README.md
+  sql/
+    010_views/
+      v_2019_q1_mapped.sql
+      v_2020_q1_mapped.sql
+      v_daily_summary.sql
+      v_heatmap_hour_dow.sql
+      v_dow_duration.sql
+      v_top_start_stations.sql
+      v_top_end_stations.sql
+      v_monthly_trend.sql
+    020_pipeline/
+      100_stg_trips_union.sql
+      110_stg_trips_dedup.sql
+      120_stg_trips_filtered.sql
+      130_trips_clean_partitioned.sql
+  scripts/
+    run_pipeline.sh
+  schemas/
+    trips_clean.schema.json
+  docs/
+    data_inventory.md
+    integrity_checks.md
+  exports/
+    sample_v_daily_summary.csv  (pequeños ejemplos opcionales)
 
