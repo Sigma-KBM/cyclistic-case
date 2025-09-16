@@ -87,8 +87,8 @@ This project explores how members and casual riders differ in their usage patter
 
 
 ## 🔗 Deliverables
-- 📊 [Interactive Dashboard (Tableau Public)](URL-YOUR-TABLEAU)  
-- 💻 [Blog Article (Behind the Numbers)](URL-YOUR-BLOG)  
+- 📊 [Interactive Dashboard (Tableau Public)](https://public.tableau.com/views/CommutetoLeisureATaleofCyclisticRiders/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)  
+- 💻 [Blog Article (Behind the Numbers)](https://btninsights.blogspot.com/)  
 - 📄 [Short Report (PDF with visuals)](URL-YOUR-PDF)  
 
 
