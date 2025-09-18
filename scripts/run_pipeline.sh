@@ -2,27 +2,42 @@
 set -euo pipefail
 
 
-# Set your GCP Project ID
 PROJECT="cyclistic-bikes-470901"
-
-
 echo "Using project: $PROJECT"
 
 
-# Step 1: Apply all view definitions (sql/010_views/*.sql)
-for f in sql/010_views/*.sql; do
-  echo "Applying view: $f"
-  bq --location=US query --project_id="${PROJECT}" --use_legacy_sql=false < "$f"
-done
+run() {
+  local file="$1"
+  echo ">> Applying: $file"
+  bq --location=US query --project_id="${PROJECT}" --use_legacy_sql=false < "$file"
+}
 
 
-# Step 2: Apply all pipeline steps (sql/020_pipeline/*.sql)
-for f in sql/020_pipeline/*.sql; do
-  echo "Applying pipeline step: $f"
-  bq --location=US query --project_id="${PROJECT}" --use_legacy_sql=false < "$f"
-done
+# Ensure CLEAN dataset exists (no-op if already there)
+bq --location=US mk --dataset --if_not_exists "${PROJECT}:Cyclistic_Bike_Clean" >/dev/null 2>&1 || true
+
+
+# 010 - mapped views
+run sql/010_views/v_2019_q1_mapped.sql
+run sql/010_views/v_2020_q1_mapped.sql
+
+
+# 020 - pipeline (build base → filtered → trips_clean)
+run sql/020_pipeline/100_stg_trips_union.sql
+run sql/020_pipeline/110_stg_trips_dedup.sql
+run sql/020_pipeline/120_stg_trips_filtered.sql
+
+
+# Drop trips_clean to allow partition spec changes safely
+bq --location=US rm -f -t ${PROJECT}:Cyclistic_Bike_Clean.trips_clean || true
+
+
+# Recreate final table with start_time_ts partitioning
+run sql/020_pipeline/130_trips_clean_partitioned.sql
+
+
+# Analytics view(s) that depend on trips_clean
+run sql/010_views/v_daily_summary.sql
 
 
 echo "Pipeline finished successfully!"
-
-add run_pipeline.sh script
