@@ -39,5 +39,12 @@ run sql/020_pipeline/130_trips_clean_partitioned.sql
 # Analytics view(s) that depend on trips_clean
 run sql/010_views/v_daily_summary.sql
 
+# more analytics views
+run sql/010_views/v_heatmap_hour_dow.sql
+run sql/010_views/v_dow_duration.sql
+run sql/010_views/v_top_start_stations.sql
+run sql/010_views/v_top_end_stations.sql
+run sql/010_views/v_monthly_trend.sql
+
 
 echo "Pipeline finished successfully!"
