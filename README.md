@@ -46,20 +46,19 @@ This project explores how members and casual riders differ in their usage patter
   
 ```mermaid
 flowchart TD
-    A[2019_Q1 Raw] --> B[v_2019_q1_mapped]
-    C[2020_Q1 Raw] --> D[v_2020_q1_mapped]
-    B --> E[stg_trips (union)]
-    D --> E
-    E --> F[stg_trips_dedup]
-    F --> G[stg_trips_filtered]
-    G --> H[trips_clean]
-    H --> I[v_daily_summary]
-    H --> J[v_dow_duration]
-    H --> K[v_heatmap_hour_dow]
-    H --> L[v_top_start_stations / v_top_end_stations]
-    H --> M[v_monthly_trend]
-
-
+    A[2019_Q1 Raw] --> B[v_2019_q1_mapped];
+    C[2020_Q1 Raw] --> D[v_2020_q1_mapped];
+    B --> E[stg_trips (union)];
+    D --> E;
+    E --> F[stg_trips_dedup];
+    F --> G[stg_trips_filtered];
+    G --> H[trips_clean];
+    H --> I[v_daily_summary];
+    H --> J[v_dow_duration];
+    H --> K[v_heatmap_hour_dow];
+    H --> L[v_top_start_stations / v_top_end_stations];
+    H --> M[v_monthly_trend];
+```
 
 2. **Feature Engineering**  
    - Ride length (seconds/minutes).  
