@@ -48,7 +48,7 @@ This project explores how members and casual riders differ in their usage patter
 flowchart TD;
     A[2019_Q1 Raw] --> B[v_2019_q1_mapped];
     C[2020_Q1 Raw] --> D[v_2020_q1_mapped];
-    B --> E[stg_trips (union)]
+    B --> E[stg_trips (union)];
     D --> E;
     E --> F[stg_trips_dedup];
     F --> G[stg_trips_filtered];
