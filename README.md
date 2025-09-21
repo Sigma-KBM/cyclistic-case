@@ -45,7 +45,7 @@ This project explores how members and casual riders differ in their usage patter
    - Filtered rides with duration < 1 min or > 24 hours.
   
 ```mermaid
-flowchart TD
+flowchart TD;
     A[2019_Q1 Raw] --> B[v_2019_q1_mapped];
     C[2020_Q1 Raw] --> D[v_2020_q1_mapped];
     B --> E[stg_trips (union)]
