@@ -42,7 +42,23 @@ This project explores how members and casual riders differ in their usage patter
 1. **Data Cleaning (BigQuery)**  
    - Unified 2019 and 2020 schemas (trip_id, timestamps, rider type, station info).  
    - Removed duplicates and invalid trips.  
-   - Filtered rides with duration < 1 min or > 24 hours.  
+   - Filtered rides with duration < 1 min or > 24 hours.
+  
+```mermaid
+flowchart TD
+    A[2019_Q1 Raw] --> B[v_2019_q1_mapped]
+    C[2020_Q1 Raw] --> D[v_2020_q1_mapped]
+    B --> E[stg_trips (union)]
+    D --> E
+    E --> F[stg_trips_dedup]
+    F --> G[stg_trips_filtered]
+    G --> H[trips_clean]
+    H --> I[v_daily_summary]
+    H --> J[v_dow_duration]
+    H --> K[v_heatmap_hour_dow]
+    H --> L[v_top_start_stations / v_top_end_stations]
+    H --> M[v_monthly_trend]
+
 
 
 2. **Feature Engineering**  
@@ -88,8 +104,8 @@ This project explores how members and casual riders differ in their usage patter
 
 ## 🔗 Deliverables
 - 📊 [Interactive Dashboard (Tableau Public)](https://public.tableau.com/views/CommutetoLeisureATaleofCyclisticRiders/Dashboard1?:language=en-US&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link)  
-- 💻 [Blog Article (Behind the Numbers)](https://btninsights.blogspot.com/)  
-- 📄 [Short Report (PDF with visuals)](URL-YOUR-PDF)  
+- 💻 [Blog Article (Behind the Numbers)](https://btninsights.blogspot.com/2025/09/from-casual-to-members-what-data-tells.html)  
+- 📄 [Short Report (PDF with visuals)](https://drive.google.com/file/d/1AtTrose-DIJj7OZdQ80ujl7ZQukk20HU/view?usp=sharing)  
 
 
 ---
@@ -98,5 +114,5 @@ This project explores how members and casual riders differ in their usage patter
 ## 🚀 How to Reproduce
 1. Clone this repository:
    ```bash
-   git clone https://github.com/your-username/cyclistic-case.git
+   git clone https://github.com/Sigma-KBM/cyclistic-case.git
    cd cyclistic-case
